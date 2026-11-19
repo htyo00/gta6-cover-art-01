@@ -1,0 +1,8 @@
+# Build outputs and local work — never committed.
+out/
+out2/
+work/
+dist/
+build/
+*.log
+.DS_Store

@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Neon Coast Cover Studio — GTA-style cover art maker</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark">NC</span>
+    <div>
+      <h1>Neon Coast Cover Studio</h1>
+      <p>Turn your photos into a Vice City sunset cover — offline, in your browser.</p>
+    </div>
+  </div>
+  <div class="top-actions">
+    <button id="undoBtn" type="button" title="Undo (Ctrl+Z)">Undo</button>
+    <button id="redoBtn" type="button" title="Redo (Ctrl+Shift+Z)">Redo</button>
+    <button id="shuffleBtn" type="button" title="Shuffle the photos across the panels">Shuffle photos</button>
+  </div>
+</header>
+
+<main class="workspace">
+  <section class="stage">
+    <div class="canvas-wrap">
+      <canvas id="coverCanvas" width="1080" height="1080"></canvas>
+      <div class="canvas-hint" id="canvasHint">Drag a panel to move its photo &middot; scroll to zoom &middot; click a panel to select it</div>
+    </div>
+    <div class="export-row">
+      <span class="export-label">Export PNG</span>
+      <button type="button" data-export="1080x1080">1080 &times; 1080</button>
+      <button type="button" data-export="1080x1350">1080 &times; 1350</button>
+      <button type="button" data-export="1920x1080">1920 &times; 1080</button>
+      <button type="button" data-export="1080x1920">Story 1080 &times; 1920</button>
+    </div>
+  </section>
+
+  <aside class="panel">
+    <section class="control-group">
+      <h2>1 &middot; Photos</h2>
+      <div class="photo-tray" id="photoTray"></div>
+      <div class="photo-actions">
+        <label class="upload-btn">Add your photos
+          <input id="uploadInput" type="file" accept="image/*" multiple hidden>
+        </label>
+        <button id="fillAllBtn" type="button">Fill all panels with selected photo</button>
+      </div>
+      <p class="note">Click a photo, then click a panel on the cover to place it there. Photos never leave your machine.</p>
+    </section>
+
+    <section class="control-group">
+      <h2>2 &middot; Layout</h2>
+      <div class="chip-row" id="layoutRow">
+        <button type="button" data-layout="grid4">4-panel grid</button>
+        <button type="button" data-layout="grid6">6-panel grid</button>
+        <button type="button" data-layout="grid9">9-panel grid</button>
+        <button type="button" data-layout="hero">Hero + three</button>
+        <button type="button" data-layout="full">Full-bleed</button>
+        <button type="button" data-layout="tilted">Tilted snapshot</button>
+      </div>
+    </section>
+
+    <section class="control-group">
+      <h2>3 &middot; Colour grade</h2>
+      <div class="chip-row" id="gradeRow">
+        <button type="button" data-grade="sunset">Sunset</button>
+        <button type="button" data-grade="neon">Neon</button>
+        <button type="button" data-grade="vice">Vice</button>
+        <button type="button" data-grade="heat">Heat</button>
+        <button type="button" data-grade="teal-gold">Teal &amp; gold</button>
+        <button type="button" data-grade="noir">Noir</button>
+        <button type="button" data-grade="candy">Candy</button>
+      </div>
+    </section>
+
+    <section class="control-group">
+      <h2>4 &middot; Caption</h2>
+      <label class="field">Title
+        <input id="titleInput" type="text" maxlength="24" value="NEON HARBOR" autocomplete="off">
+      </label>
+      <label class="field">Subtitle
+        <input id="subtitleInput" type="text" maxlength="48" value="chase the sunset, own the night" autocomplete="off">
+      </label>
+      <label class="check"><input id="starsInput" type="checkbox" checked> Show five-star heat meter</label>
+      <label class="check"><input id="badgeInput" type="checkbox" checked> Show ribbon badge</label>
+      <label class="check"><input id="grainInput" type="checkbox" checked> Film grain</label>
+      <label class="check"><input id="vignetteInput" type="checkbox" checked> Vignette</label>
+    </section>
+
+    <section class="control-group">
+      <h2>5 &middot; Selected panel</h2>
+      <p class="note" id="panelInfo">No panel selected yet — click a panel on the cover.</p>
+      <label class="field">Zoom
+        <input id="zoomSlider" type="range" min="1" max="3" step="0.01" value="1">
+      </label>
+      <button id="resetCropBtn" type="button">Reset crop of selected panel</button>
+    </section>
+  </aside>
+</main>
+
+<footer class="footnote">
+  <p>Original artwork made from your own photos. No Rockstar Games logos, artwork or fonts. Typefaces: Anton, Pacifico and Bebas Neue under the SIL Open Font License.</p>
+</footer>
+
+<script src="src/cover.js"></script>
+<script src="src/shots.js"></script>
+<script src="src/main.js"></script>
+</body>
+</html>
